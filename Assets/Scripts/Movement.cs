@@ -5,7 +5,10 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class Movement : MonoBehaviour
 {
-    public float m_VerticalSpeed = 10000000.0f;
+    [SerializeField] private float m_MaxHeight = 10.0f;
+    [SerializeField] private float m_MinSpeed = 1.0f;
+
+    public float m_VerticalSpeed = 1000.0f;
     public float m_HorizontalSpeed = 2.0f;
 
     private Rigidbody m_Body;
@@ -43,6 +46,21 @@ public class Movement : MonoBehaviour
     private void Move()
     {
         var position = m_Body.position + VerticalMove() + HorizontalMove();
+
+        if (position.y > m_MaxHeight)
+            position.y = m_MaxHeight;
+
+        if (position.y < -m_MaxHeight)
+            position.y = -m_MaxHeight;
+
         m_Body.MovePosition(position);
+    }
+
+    public void SpeedChange(float change)
+    {
+        m_HorizontalSpeed += change;
+
+        if (m_HorizontalSpeed < m_MinSpeed)
+            m_HorizontalSpeed = m_MinSpeed;
     }
 }
