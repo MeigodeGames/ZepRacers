@@ -25,14 +25,13 @@ public class Timer : MonoBehaviour
         m_TimerText.SetText(m_Time.ToString("000.0"));
     }
 
-    public string StopTimer()
+    public float StopTimer()
     {
-        string finalTime = m_Time.ToString("000.0");
-
         m_IsRunning = false;
-        m_TimerText.SetText(finalTime);
+                
+        m_TimerText.SetText(m_Time.ToString("000.0"));
         m_TimerText.color = Color.blue;
 
-        return (finalTime);
+        return m_Time;
     }
 }

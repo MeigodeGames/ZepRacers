@@ -10,7 +10,7 @@ public class FinishLine : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            string finishTime;
+            float finishTime;
             finishTime = m_Timer.StopTimer();
             Debug.Log(finishTime);
         }
